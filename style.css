@@ -13,12 +13,12 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .book {
-    height: 100px;
-    width: 50px;
+    height: 100%;
+    width: 100%;
     border: 1px solid black;
 }
