@@ -99,6 +99,70 @@ main::-webkit-scrollbar {
     height: 100%;   
 }
 
+.book:hover {
+    cursor: pointer;
+}
+
 .mouseHover {
     transform: scale(1.3);
 }
+
+#one, #two, #three, #four, #five, #six, #seven, #eight,
+#nine, #ten, #eleven, #twelve {
+    background-size: cover;
+}
+
+#one {
+    background-image: url('pictures/thePrinciplesOfObjectOrientedJavaScript.jpg');
+}
+
+#two {
+    background-image: url('pictures/insideTheMachineAnIllustratedIntroToMicro.jpg');
+}
+
+#three {
+    background-image: url('pictures/structureAndInterpretationOfComputerPrograms.jpg');
+}
+
+#four {
+    background-image: url('pictures/designPatternsElementsOfReusableOOSoftware.jpg');
+}
+
+#five {
+    background-image: url('pictures/codeTheHiddenLanguageOfComputerHardwareAndSoftware.jpg');
+}
+
+#six {
+    background-image: url('pictures/crackingTheCodingInterview.jpg');
+}
+
+#seven {
+    background-image: url('pictures/codeComplete.jpg');
+}
+
+#eight {
+    background-image: url('pictures/programmingPearls.jpg');
+}
+
+#nine {
+    background-image: url('pictures/thePragmaticProgrammer.jpg');
+}
+
+#ten {
+    background-image: url('pictures/codeSimplicity.jpg');
+}
+
+#eleven {
+    background-image: url('pictures/algorithmsToLiveBy.jpg');
+}
+
+#twelve {
+    background-image: url('pictures/cleanCode.jpg');
+}
+
+
+
+
+
+
+
