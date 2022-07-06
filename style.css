@@ -34,6 +34,9 @@ header {
     border: none;
 }
 
+.lowerIcons {
+    margin-bottom: 15px;
+}
 
 button:hover {
     cursor: pointer;
@@ -42,8 +45,37 @@ button:hover {
     background-image: url('pictures/search.png');
     background-size: cover;
     background-color: transparent;
-    margin-top: 5px;
-    
+    margin-top: 15px;
+}
+
+#sort {
+    background-image: url('pictures/sort.png');
+    background-size: cover;
+    background-color: transparent;
+}
+
+#settings {
+    background-image: url('pictures/settings.png');
+    background-size: cover;
+    background-color: transparent;
+}
+
+#account {
+    background-image: url('pictures/user.png');
+    background-size: cover;
+    background-color: transparent;
+}
+
+#addBook {
+    background-image: url('pictures/addBook.png');
+    background-size: cover;
+    background-color: transparent;
+}   
+
+#deleteBook {
+    background-image: url('pictures/removeBook.png');
+    background-size: cover;
+    background-color: transparent;
 }
 
 main {
@@ -65,4 +97,8 @@ main::-webkit-scrollbar {
     border: 1px solid aqua;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
     height: 100%;   
+}
+
+.mouseHover {
+    transform: scale(1.3);
 }

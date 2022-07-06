@@ -13,4 +13,23 @@ pages: 368, read: false}, {title: "Clean Code: A Handbook of Agile Software Craf
 pages: 464, read: false}];
 
 /* on page load cycle through myLibrary array and add class & ID to each div that corresponds to an object according to its index in the array. 12 book objects = 12 divs.
-id will correlate with unique background img url from site such as amazon. form that ea
+id will correlate with unique background img url from site such as amazon.*/
+
+const buttons = document.querySelectorAll('button');
+
+function hoverEffect() {
+    for (let i=0; i<buttons.length;i++) {
+        buttons[i].addEventListener("mouseover", ()=> {
+            buttons[i].classList.add('mouseHover');
+        buttons[i].addEventListener("mouseout", ()=> {
+            buttons[i].classList.remove("mouseHover");
+        });    
+        });
+    }
+}
+
+
+
+
+
+hoverEffect();
