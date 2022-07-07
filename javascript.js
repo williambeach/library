@@ -13,6 +13,12 @@ pages: 368, read: false}, {title: "Clean Code: A Handbook of Agile Software Craf
 pages: 464, read: false}];
 
 const buttons = document.querySelectorAll('button');
+const books = document.querySelectorAll('.book');
+const searchButton = document.querySelector('#search');
+const main = document.querySelector('main');
+const body = document.querySelector('body');
+const header = document.querySelector('header');
+const newDiv = document.createElement("div");
 
 
 function hoverEffect() {
@@ -24,6 +30,27 @@ function hoverEffect() {
         });    
         });
     }
+    for (let i=0; i<books.length; i++) {
+        books[i].addEventListener("mouseover", ()=> {
+            books[i].classList.add('bookHover');
+        books[i].addEventListener("mouseout", ()=> {
+            books[i].classList.remove("bookHover");
+        });
+        });
+    }
+}
+
+function searchBooks() {
+    let currentValue = searchButton.value;
+    if (currentValue == "off") {
+        searchButton.value = "on";
+        header.after(newDiv);
+        body.style.gridTemplateColumns = "60px 1fr 1fr";
+    } else {
+        searchButton.value = "off";
+        newDiv.remove();
+        body.style.gridTemplateColumns = "60px 1fr";
+    }
 }
 
 
@@ -31,3 +58,4 @@ function hoverEffect() {
 
 
 hoverEffect();
+searchBooks();
