@@ -19,6 +19,10 @@ const main = document.querySelector('main');
 const body = document.querySelector('body');
 const header = document.querySelector('header');
 const newDiv = document.createElement("div");
+const searchBar = document.createElement("input");
+const searchBarButton = document.createElement("button");
+
+
 
 
 function hoverEffect() {
@@ -45,6 +49,12 @@ function searchBooks() {
     if (currentValue == "off") {
         searchButton.value = "on";
         header.after(newDiv);
+        newDiv.classList.add("newDiv");
+        searchBar.placeholder = "Search By Title or Author";
+        searchBar.classList.add('searchBar');
+        newDiv.appendChild(searchBar);
+        searchBarButton.classList.add('searchBarButton');
+        newDiv.appendChild(searchBarButton);
         body.style.gridTemplateColumns = "60px 1fr 1fr";
     } else {
         searchButton.value = "off";
