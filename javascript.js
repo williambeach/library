@@ -180,29 +180,15 @@ function sortAlgo() {
     const books = document.querySelectorAll('.book');
     sortSelectButton.addEventListener('click', ()=> {
         if (sortSelect.value == "Sort By Author") {
-            let myArray = Array.from(books);
-            console.log(myArray);
-            myArray.sort((a,b) => {
-                indexOfA = myLibrary.findIndex(item => item.title == a.title);
-                indexOfB = myLibrary.findIndex(item => item.title == b.title);
-                authorOfA = myLibrary[indexOfA].author; //author string of a
-                authorOfB = myLibrary[indexOfB].author; //author string of b
-                a.author = authorOfA;
-                b.author = authorOfB;
-                if (a.author < b.author) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            });
-            for (let i=0;i<myArray.length;i++) {
-                main.appendChild(myArray[i]);
-            }
+            sortObjectByAuthor(); //create object array that is sorted and then hide current .book and append new ordered books to main div
             sortButton.value = "off";
             sortDiv.remove();
             body.style.gridTemplateColumns = "60px 1fr";
-        } else {
-            console.log(sortSelect.value);
+        }
+        
+        else {
+            sortObjectByTitle();
+            //create object array that is sorted by title and do same as above. 
         }
     });
 }
