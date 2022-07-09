@@ -8,13 +8,13 @@ pages: 687, read: true}, {title: "Code Complete: A Practical Handbook of Softwar
 pages: 960, read: false}, {title: "Programming Pearls", author: "Jon Bentley",
 pages: 256, read: false}, {title: "The Pragmatic Programmer: Your Journey to Mastery", author: "Andrew Hunt, David Thomas",
 pages: 352, read: false}, {title: "Code Simplicity", author: "Max Kanat-Alexander",
-pages: 84, read: false}, {title: "Algorithms to Live By: The Computer Science of Human Decisions", author: "Brian Christian Tom Griffiths",
+pages: 84, read: false}, {title: "Algorithms to Live By: The Computer Science of Human Decisions", author: "Brian Christian, Tom Griffiths",
 pages: 368, read: false}, {title: "Clean Code: A Handbook of Agile Software Craftmanship", author: "Robert C. Martin",
 pages: 464, read: false}, {title: "Think Like a Programmer: An Introduction to Creative Problem Solving", author: "V. Anton Spraul",
 pages: 256, read: false}, {title: "Introduction to Algorithms", author: "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
 pages: 1312, read: false}];
 
-const sortOptions = [" Sort By Author", "Sort By Title"];
+const sortOptions = ["Sort By Author", "Sort By Title"];
 
 const buttons = document.querySelectorAll('button');
 const books = document.querySelectorAll('.book');
@@ -34,7 +34,7 @@ const showAll = document.createElement("button");
 function addSortOptions() {
     for (let i=0;i<sortOptions.length;i++) {
         let option = document.createElement("option");
-        option.value = sortOptions[i].toLowerCase();
+        option.value = sortOptions[i];
         option.text = sortOptions[i];
         sortSelect.appendChild(option);
     }
@@ -107,9 +107,6 @@ function search() {
 function searchAlgo() {
     searchBarButton.addEventListener('click', ()=> {
         searchButton.value = "off";
-        for (let i=0;i<books.length;i++) {
-            books[i].classList.remove('hideBook');
-        }
         if (searchBar.value != "") {
             search();
         }
@@ -156,6 +153,42 @@ function sortBooks() {
 }
 
 
+function sortAlgo() {
+    sortSelectButton.addEventListener('click', ()=> {
+        if (sortSelect.value == "Sort By Author") {
+            let myArray = Array.from(books);
+            myArray.sort((a,b) => {
+                indexOfA = myLibrary.findIndex(item => item.title == a.title);
+                indexOfB = myLibrary.findIndex(item => item.title == b.title);
+                authorOfA = myLibrary[indexOfA].author; //author string of a
+                authorOfB = myLibrary[indexOfB].author; //author string of b
+                if (authorOfA.includes(",")) {
+                    author_a_array = authorOfA.split(",");
+                    for (let i=0; i<author_a_array.length;i++) {
+                        for (let j=0;)
+                    }
+                }
+                a.author = authorOfA;
+                b.author = authorOfB;
+                if (a.author < b.author) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            });
+            for (let i=0;i<myArray.length;i++) {
+                main.appendChild(myArray[i]);
+            }
+            sortButton.value = "off";
+            sortDiv.remove();
+            body.style.gridTemplateColumns = "60px 1fr";
+        } else {
+            console.log(sortSelect.value);
+        }
+    });
+}
+
+
 
 
 hoverEffect();
@@ -164,3 +197,4 @@ searchAlgo();
 showAllButton();
 sortBooks();
 addSortOptions();
+sortAlgo();
