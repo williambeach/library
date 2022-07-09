@@ -167,7 +167,7 @@ function sortBooks() {
 }
 
 function sortObjectByAuthor() {
-    for (let i=0;i<myLibrary.length;) {
+    for (let i=0;i<myLibrary.length;i++) {
 
     }
 }
