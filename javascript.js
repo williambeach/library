@@ -1,3 +1,4 @@
+
 let myLibrary = [{title: "The Principles of Object-Oriented JavaScript", author: "Nicholas C. Zakas",
 pages: 120, read: true}, {title: "Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture", author: "Jon Stokes", 
 pages: 320, read: false}, {title: "Structure and Interpretation of Computer Programs", author: "Harold Abelson, Gerald Jay, Sussman Julie Sussman",
@@ -31,6 +32,15 @@ const searchBar = document.createElement("input");
 const searchBarButton = document.createElement("button");
 const showAll = document.createElement("button");
 
+function showBooks() {
+    for (let i =0;i<myLibrary.length;i++) {
+        newDiv = document.createElement("div");
+        newDiv.classList.add('book');
+        newDiv.title = myLibrary[i].title;
+        main.appendChild(newDiv);
+    }
+}
+
 function addSortOptions() {
     for (let i=0;i<sortOptions.length;i++) {
         let option = document.createElement("option");
@@ -42,6 +52,7 @@ function addSortOptions() {
 
 
 function hoverEffect() {
+    const books = document.querySelectorAll('.book');
     for (let i=0; i<buttons.length;i++) {
         buttons[i].addEventListener("mouseover", ()=> {
             buttons[i].classList.add('mouseHover');
@@ -61,6 +72,7 @@ function hoverEffect() {
 }
 
 function searchBooks() {
+    const books = document.querySelectorAll('.book');
     let currentValue = searchButton.value;
     if (currentValue == "off") {
         searchButton.value = "on";
@@ -92,6 +104,7 @@ function searchBooks() {
 }
 
 function search() {
+    const books = document.querySelectorAll('.book');
     for (let i=0; i<myLibrary.length;i++) {
         searchBar.value = searchBar.value.toLowerCase();
         if (myLibrary[i].author.toLowerCase().includes(searchBar.value) || myLibrary[i].title.toLowerCase().includes(searchBar.value)) {
@@ -118,6 +131,7 @@ function searchAlgo() {
 }
 
 function showAllButton() {
+    const books = document.querySelectorAll('.book');
     showAll.addEventListener('click', ()=> {
         for (let i=0;i<books.length;i++) {
             books[i].classList.remove('hideBook');
@@ -152,22 +166,27 @@ function sortBooks() {
     }
 }
 
+function sortObjectByAuthor() {
+    for (let i=0;i<myLibrary.length;) {
+
+    }
+}
+
+function sortObjectByTitle() {
+
+}
 
 function sortAlgo() {
+    const books = document.querySelectorAll('.book');
     sortSelectButton.addEventListener('click', ()=> {
         if (sortSelect.value == "Sort By Author") {
             let myArray = Array.from(books);
+            console.log(myArray);
             myArray.sort((a,b) => {
                 indexOfA = myLibrary.findIndex(item => item.title == a.title);
                 indexOfB = myLibrary.findIndex(item => item.title == b.title);
                 authorOfA = myLibrary[indexOfA].author; //author string of a
                 authorOfB = myLibrary[indexOfB].author; //author string of b
-                if (authorOfA.includes(",")) {
-                    author_a_array = authorOfA.split(",");
-                    for (let i=0; i<author_a_array.length;i++) {
-                        author_a_array[i].split(" ");
-                    }
-                }
                 a.author = authorOfA;
                 b.author = authorOfB;
                 if (a.author < b.author) {
@@ -190,7 +209,7 @@ function sortAlgo() {
 
 
 
-
+showBooks();
 hoverEffect();
 searchBooks();
 searchAlgo();

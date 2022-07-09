@@ -99,7 +99,8 @@ main::-webkit-scrollbar {
 .book {
     border: 1px solid aqua;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
-    height: 100%;   
+    height: 100%; 
+    background-size: 100% 100%;  
 }
 
 .book:hover {
@@ -114,65 +115,60 @@ main::-webkit-scrollbar {
     transform: scale(1.1);
 }
 
-#one, #two, #three, #four, #five, #six, #seven, #eight,
-#nine, #ten, #eleven, #twelve, #thirteen, #fourteen {
-    background-size: 100% 100%;
-    
-}
 
-#one {
+[title="The Principles of Object-Oriented JavaScript"] {
     background-image: url('pictures/thePrinciplesOfObjectOrientedJavaScript.jpg');
 }
 
-#two {
+[title="Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture"] {
     background-image: url('pictures/insideTheMachineAnIllustratedIntroToMicro.jpg');
 }
 
-#three {
+[title="Structure and Interpretation of Computer Programs"] {
     background-image: url('pictures/structureAndInterpretationOfComputerPrograms.jpg');
 }
 
-#four {
+[title="Design Patterns: Elements of Reusable Object-Oriented Software"] {
     background-image: url('pictures/designPatternsElementsOfReusableOOSoftware.jpg');
 }
 
-#five {
+[title="Code: The Hidden Language of Computer Hardware and Software"] {
     background-image: url('pictures/codeTheHiddenLanguageOfComputerHardwareAndSoftware.jpg');
 }
 
-#six {
+[title="Cracking the Coding Interview: 189 Programming Questions and Solutions"] {
     background-image: url('pictures/crackingTheCodingInterview.jpg');
 }
 
-#seven {
+[title="Code Complete: A Practical Handbook of Software Construction"] {
     background-image: url('pictures/codeComplete.jpg');
 }
 
-#eight {
+[title="Programming Pearls"] {
     background-image: url('pictures/programmingPearls.jpg');
 }
 
-#nine {
+[title="The Pragmatic Programmer: Your Journey to Mastery"] {
     background-image: url('pictures/thePragmaticProgrammer.jpg');
 }
 
-#ten {
+[title="Code Simplicity"] {
     background-image: url('pictures/codeSimplicity.jpg');
 }
 
-#eleven {
+[title="Algorithms to Live By: The Computer Science of Human Decisions"] {
     background-image: url('pictures/algorithmsToLiveBy.jpg');
 }
 
-#twelve {
+[title="Clean Code: A Handbook of Agile Software Craftmanship"] {
     background-image: url('pictures/cleanCode.jpg');
 }
 
-#thirteen {
+[title="Think Like a Programmer: An Introduction to Creative Problem Solving"] {
     background-image: url('pictures/thinkLikeAProgrammer.jpg');
 }
 
-#fourteen {
+[title="Introduction to Algorithms"] {
     background-image: url('pictures/introductionToAlgorithms.jpg');
 }
 
