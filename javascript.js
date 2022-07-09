@@ -22,6 +22,7 @@ const header = document.querySelector('header');
 const newDiv = document.createElement("div");
 const searchBar = document.createElement("input");
 const searchBarButton = document.createElement("button");
+const showAll = document.createElement("button");
 
 
 
@@ -59,7 +60,11 @@ function searchBooks() {
         body.style.gridTemplateColumns = "60px 1fr 1fr";
     } else {
         searchButton.value = "off";
+        for (let i=0;i<books.length;i++) {
+            books[i].classList.remove('hideBook');
+        }
         newDiv.remove();
+        showAll.remove();
         body.style.gridTemplateColumns = "60px 1fr";
     }
 }
@@ -68,7 +73,11 @@ function search() {
     for (let i=0; i<myLibrary.length;i++) {
         searchBar.value = searchBar.value.toLowerCase();
         if (myLibrary[i].author.toLowerCase().includes(searchBar.value) || myLibrary[i].title.toLowerCase().includes(searchBar.value)) {
-            console.log(myLibrary[i]);
+            for (let j=0; j< books.length;j++) {
+                if (myLibrary[i].title != books[j].getAttribute("title")) {
+                    books[j].classList.add('hideBook');
+                }
+            }
         }
     }
 }
@@ -76,14 +85,32 @@ function search() {
 function searchAlgo() {
     searchBarButton.addEventListener('click', ()=> {
         searchButton.value = "off";
-        search();
+        for (let i=0;i<books.length;i++) {
+            books[i].classList.remove('hideBook');
+        }
+        if (searchBar.value != "") {
+            search();
+        }
         newDiv.remove();
         body.style.gridTemplateColumns = "60px 1fr";
+        showAll.classList.add('showAll');
+        main.appendChild(showAll);
     });
 }
+
+function showAllButton() {
+    showAll.addEventListener('click', ()=> {
+        for (let i=0;i<books.length;i++) {
+            books[i].classList.remove('hideBook');
+        }
+        showAll.remove();
+    });
+} 
+
 
 
 
 hoverEffect();
 searchBooks();
 searchAlgo();
+showAllButton();

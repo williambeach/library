@@ -218,3 +218,15 @@ main::-webkit-scrollbar {
 }
 
 
+.hideBook {
+    display: none;
+}
+
+.showAll {
+    width: 100px;
+    height: 40px;
+}
+
+.showAll::after {
+    content: "Show All Books";
+}
