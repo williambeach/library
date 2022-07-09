@@ -165,7 +165,7 @@ function sortAlgo() {
                 if (authorOfA.includes(",")) {
                     author_a_array = authorOfA.split(",");
                     for (let i=0; i<author_a_array.length;i++) {
-                        for (let j=0;)
+                        author_a_array[i].split(" ");
                     }
                 }
                 a.author = authorOfA;
