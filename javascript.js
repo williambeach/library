@@ -11,20 +11,34 @@ pages: 352, read: false}, {title: "Code Simplicity", author: "Max Kanat-Alexande
 pages: 84, read: false}, {title: "Algorithms to Live By: The Computer Science of Human Decisions", author: "Brian Christian Tom Griffiths",
 pages: 368, read: false}, {title: "Clean Code: A Handbook of Agile Software Craftmanship", author: "Robert C. Martin",
 pages: 464, read: false}, {title: "Think Like a Programmer: An Introduction to Creative Problem Solving", author: "V. Anton Spraul",
-pages: 256, read: false}];
+pages: 256, read: false}, {title: "Introduction to Algorithms", author: "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",
+pages: 1312, read: false}];
+
+const sortOptions = [" Sort By Author", "Sort By Title"];
 
 const buttons = document.querySelectorAll('button');
 const books = document.querySelectorAll('.book');
-const searchButton = document.querySelector('#search');
+const sortDiv = document.createElement("div");
+const sortSelect = document.createElement("select");
+const sortButton = document.querySelector('#sort');
+const sortSelectButton = document.createElement('button');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
 const header = document.querySelector('header');
-const newDiv = document.createElement("div");
+const searchDiv = document.createElement("div");
+const searchButton = document.querySelector('#search');
 const searchBar = document.createElement("input");
 const searchBarButton = document.createElement("button");
 const showAll = document.createElement("button");
 
-
+function addSortOptions() {
+    for (let i=0;i<sortOptions.length;i++) {
+        let option = document.createElement("option");
+        option.value = sortOptions[i].toLowerCase();
+        option.text = sortOptions[i];
+        sortSelect.appendChild(option);
+    }
+}
 
 
 function hoverEffect() {
@@ -50,20 +64,28 @@ function searchBooks() {
     let currentValue = searchButton.value;
     if (currentValue == "off") {
         searchButton.value = "on";
-        header.after(newDiv);
-        newDiv.classList.add("newDiv");
+        header.after(searchDiv);
+        searchDiv.classList.add("searchDiv");
         searchBar.placeholder = "Search By Title or Author";
         searchBar.classList.add('searchBar');
-        newDiv.appendChild(searchBar);
+        searchDiv.appendChild(searchBar);
         searchBarButton.classList.add('searchBarButton');
-        newDiv.appendChild(searchBarButton);
+        searchDiv.appendChild(searchBarButton);
         body.style.gridTemplateColumns = "60px 1fr 1fr";
+        for (let i=0;i<buttons.length;i++) {
+            if (buttons[i].id != "search") {
+                buttons[i].addEventListener('click', ()=> {
+                    searchButton.value = "off";
+                    searchDiv.remove();
+                });
+            }
+        }
     } else {
         searchButton.value = "off";
         for (let i=0;i<books.length;i++) {
             books[i].classList.remove('hideBook');
         }
-        newDiv.remove();
+        searchDiv.remove();
         showAll.remove();
         body.style.gridTemplateColumns = "60px 1fr";
     }
@@ -91,7 +113,7 @@ function searchAlgo() {
         if (searchBar.value != "") {
             search();
         }
-        newDiv.remove();
+        searchDiv.remove();
         body.style.gridTemplateColumns = "60px 1fr";
         showAll.classList.add('showAll');
         main.appendChild(showAll);
@@ -107,6 +129,32 @@ function showAllButton() {
     });
 } 
 
+function sortBooks() {
+    let sortButtonValue = sortButton.value;
+    if (sortButtonValue == "off") {
+        sortButton.value = "on";
+        header.after(sortDiv);
+        body.style.gridTemplateColumns = "60px 1fr 1fr";
+        sortDiv.classList.add("sortDiv");
+        sortSelect.classList.add('sortSelect');
+        sortDiv.appendChild(sortSelect);
+        sortSelectButton.classList.add('sortSelectButton');
+        sortDiv.appendChild(sortSelectButton);
+        for (let i=0;i<buttons.length;i++) {
+            if (buttons[i].id != "sort") {
+                buttons[i].addEventListener('click', ()=> {
+                    sortButton.value = "off";
+                    sortDiv.remove();
+                });
+            }
+        }
+    } else {
+        sortButton.value = "off";
+        sortDiv.remove();
+        body.style.gridTemplateColumns = "60px 1fr";
+    }
+}
+
 
 
 
@@ -114,3 +162,5 @@ hoverEffect();
 searchBooks();
 searchAlgo();
 showAllButton();
+sortBooks();
+addSortOptions();
