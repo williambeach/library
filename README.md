@@ -13,4 +13,4 @@ Also, book cover pictures use a url in the form for this same reason, we can't s
 Main content background image by Ricardo Esquivel: https://www.pexels.com/photo/books-filed-neatly-on-shelves-1907785/
 
 Icons used in this project were provided by:
-<a target="_blank" href="https://icons8.com/icon/tYE8ZoDVbD85/library">Library</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+<a target="_blank" href="https://icons8.com">Icons8</a>
