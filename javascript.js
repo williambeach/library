@@ -1,7 +1,7 @@
 
 let myLibrary = [{title: "The Principles of Object-Oriented JavaScript", author: "Nicholas C. Zakas",
 pages: 120, read: true}, {title: "Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture", author: "Jon Stokes", 
-pages: 320, read: false}, {title: "Structure and Interpretation of Computer Programs", author: "Harold Abelson, Gerald Jay, Sussman Julie Sussman",
+pages: 320, read: false}, {title: "Structure and Interpretation of Computer Programs", author: "Harold Abelson, Gerald Jay Sussman, Julie Sussman",
 pages: 657, read: false}, {title: "Design Patterns: Elements of Reusable Object-Oriented Software", author: "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
 pages: 416, read: false}, {title: "Code: The Hidden Language of Computer Hardware and Software", author: "Charles Petzold",
 pages: 400, read: false}, {title: "Cracking the Coding Interview: 189 Programming Questions and Solutions", author: "Gayle Laakmann McDowell",
@@ -38,6 +38,22 @@ function showBooks() {
         newDiv.classList.add('book');
         newDiv.title = myLibrary[i].title;
         main.appendChild(newDiv);
+    }
+}
+
+function showSortedBooks() {
+    for (let i=0; i<authorSortedObjectArray.length;i++) {
+        newDiv = document.createElement("div");
+        newDiv.classList.add('book');
+        newDiv.title = authorSortedObjectArray[i].title;
+        main.appendChild(newDiv);
+    }
+}
+
+function hideBooks() {
+    const books = document.querySelectorAll('.book');
+    for (let i =0; i<books.length;i++) {
+        books[i].classList.add('hideBook');
     }
 }
 
@@ -167,9 +183,42 @@ function sortBooks() {
 }
 
 function sortObjectByAuthor() {
+    authorSortedObjectArray = [];
+    authorArray = [];
+    tempSplit = [];
+    compareArray = [];
     for (let i=0;i<myLibrary.length;i++) {
-
+        if (myLibrary[i].author.includes(",")) {
+            tempSplit = myLibrary[i].author.split(",")
+            for (let j=0;j<tempSplit.length;j++) {
+                fullName = tempSplit[j].split(" ");
+                lastName = fullName[fullName.length - 1];
+                compareArray.push(lastName);
+            }
+            compareArray.sort((a,b)=> {
+                if (a < b) {return -1} else {return 1};
+            });
+            authorArray.push(compareArray[0]);
+            compareArray = [];
+        } else {
+            fullName = myLibrary[i].author.split(" ");
+            lastName = fullName[fullName.length - 1];
+            authorArray.push(lastName);
+        }
     }
+    authorArray.sort((a,b)=> {
+        if (a<b) {return -1} else {return 1};
+    });
+    for (let i=0;i<authorArray.length;i++) {
+        for (let j=0;j<myLibrary.length;j++) {
+            if (myLibrary[j].author.includes(authorArray[i])) {
+                authorSortedObjectArray.push(myLibrary[j]);
+            }
+        }
+    }
+    hideBooks();
+    showSortedBooks();
+
 }
 
 function sortObjectByTitle() {
@@ -180,8 +229,8 @@ function sortAlgo() {
     const books = document.querySelectorAll('.book');
     sortSelectButton.addEventListener('click', ()=> {
         if (sortSelect.value == "Sort By Author") {
-            sortObjectByAuthor(); //create object array that is sorted and then hide current .book and append new ordered books to main div
             sortButton.value = "off";
+            sortObjectByAuthor(); //create object array that is sorted and then hide current .book and append new ordered books to main div
             sortDiv.remove();
             body.style.gridTemplateColumns = "60px 1fr";
         }
