@@ -41,11 +41,20 @@ function showBooks() {
     }
 }
 
-function showSortedBooks() {
+function showSortedAuthorBooks() {
     for (let i=0; i<authorSortedObjectArray.length;i++) {
         newDiv = document.createElement("div");
         newDiv.classList.add('book');
         newDiv.title = authorSortedObjectArray[i].title;
+        main.appendChild(newDiv);
+    }
+}
+
+function showSortedTitleBooks() {
+    for (let i=0; i<titleSortedObjectArray.length;i++) {
+        newDiv = document.createElement("div");
+        newDiv.classList.add('book');
+        newDiv.title = titleSortedObjectArray[i].title;
         main.appendChild(newDiv);
     }
 }
@@ -217,13 +226,28 @@ function sortObjectByAuthor() {
         }
     }
     deleteBooks();
-    showSortedBooks();
+    showSortedAuthorBooks();
     hoverEffect();
 
 }
 
 function sortObjectByTitle() {
-
+    arrayOfSortedTitles = [];
+    titleSortedObjectArray = [];
+    for (let i = 0;i<myLibrary.length;i++) {
+        arrayOfSortedTitles.push(myLibrary[i].title)
+    }
+    arrayOfSortedTitles.sort((a,b)=> { if (a < b) {return -1} else {return 1}});
+    for (let i=0; i<arrayOfSortedTitles.length;i++) {
+        for (let j = 0; j<myLibrary.length;j++) {
+            if (myLibrary[j].title.includes(arrayOfSortedTitles[i])) {
+                titleSortedObjectArray.push(myLibrary[j]);
+            }
+        }
+    }
+    deleteBooks();
+    showSortedTitleBooks();
+    hoverEffect();
 }
 
 function sortAlgo() {
@@ -237,8 +261,10 @@ function sortAlgo() {
         }
         
         else {
+            sortButton.value = "off";
             sortObjectByTitle();
-            //create object array that is sorted by title and do same as above. 
+            sortDiv.remove();
+            body.style.gridTemplateColumns = "60px 1fr"; 
         }
     });
 }
