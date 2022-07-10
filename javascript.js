@@ -1,4 +1,3 @@
-
 let myLibrary = [{title: "The Principles of Object-Oriented JavaScript", author: "Nicholas C. Zakas",
 pages: 120, read: true}, {title: "Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture", author: "Jon Stokes", 
 pages: 320, read: false}, {title: "Structure and Interpretation of Computer Programs", author: "Harold Abelson, Gerald Jay Sussman, Julie Sussman",
@@ -17,12 +16,19 @@ pages: 1312, read: false}];
 
 const sortOptions = ["Sort By Author", "Sort By Title"];
 
+const settingsOptions = ["Blue Theme", "Green Theme", "Red Theme", "Yellow Theme", "Reset"];
+
 const buttons = document.querySelectorAll('button');
 const books = document.querySelectorAll('.book');
 const sortDiv = document.createElement("div");
 const sortSelect = document.createElement("select");
 const sortButton = document.querySelector('#sort');
 const sortSelectButton = document.createElement('button');
+const settingsButton = document.querySelector('#settings');
+const settingsDiv = document.createElement("div");
+const settingsSelect = document.createElement("select");
+const settingsSelectButton = document.createElement('button');
+const accountButton = document.querySelector('#account');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
 const header = document.querySelector('header');
@@ -76,6 +82,15 @@ function addSortOptions() {
     }
 }
 
+function addSettingsOptions() {
+    for (let i=0;i<settingsOptions.length;i++) {
+        let option = document.createElement("option");
+        option.value = settingsOptions[i];
+        option.text = settingsOptions[i];
+        settingsSelect.appendChild(option);
+    }
+}
+
 
 function hoverEffect() {
     const books = document.querySelectorAll('.book');
@@ -98,9 +113,7 @@ function hoverEffect() {
 }
 
 function searchBooks() {
-    const books = document.querySelectorAll('.book');
-    let currentValue = searchButton.value;
-    if (currentValue == "off") {
+    if (searchButton.value == "off") {
         searchButton.value = "on";
         header.after(searchDiv);
         searchDiv.classList.add("searchDiv");
@@ -123,6 +136,7 @@ function searchBooks() {
         for (let i=0;i<books.length;i++) {
             books[i].classList.remove('hideBook');
         }
+        settingsTheme();
         searchDiv.remove();
         showAll.remove();
         body.style.gridTemplateColumns = "60px 1fr";
@@ -157,17 +171,16 @@ function searchAlgo() {
 }
 
 function showAllButton() {
-    const books = document.querySelectorAll('.book');
     showAll.addEventListener('click', ()=> {
        deleteBooks();
        showBooks();
        hoverEffect();
+       settingsTheme();
     });
 } 
 
 function sortBooks() {
-    let sortButtonValue = sortButton.value;
-    if (sortButtonValue == "off") {
+    if (sortButton.value == "off") {
         sortButton.value = "on";
         header.after(sortDiv);
         body.style.gridTemplateColumns = "60px 1fr 1fr";
@@ -228,7 +241,7 @@ function sortObjectByAuthor() {
     deleteBooks();
     showSortedAuthorBooks();
     hoverEffect();
-
+    settingsTheme();
 }
 
 function sortObjectByTitle() {
@@ -248,10 +261,10 @@ function sortObjectByTitle() {
     deleteBooks();
     showSortedTitleBooks();
     hoverEffect();
+    settingsTheme();
 }
 
 function sortAlgo() {
-    const books = document.querySelectorAll('.book');
     sortSelectButton.addEventListener('click', ()=> {
         if (sortSelect.value == "Sort By Author") {
             sortButton.value = "off";
@@ -259,7 +272,6 @@ function sortAlgo() {
             sortDiv.remove();
             body.style.gridTemplateColumns = "60px 1fr";
         }
-        
         else {
             sortButton.value = "off";
             sortObjectByTitle();
@@ -268,6 +280,76 @@ function sortAlgo() {
         }
     });
 }
+
+function settings() {
+    if (settingsButton.value == "off") {
+        settingsButton.value = "on";
+        header.after(settingsDiv);
+        body.style.gridTemplateColumns = "60px 1fr 1fr";
+        settingsDiv.classList.add('settingsDiv');
+        settingsSelect.classList.add('settingsSelect');
+        settingsDiv.appendChild(settingsSelect);
+        settingsSelectButton.classList.add('settingsSelectButton');
+        settingsDiv.appendChild(settingsSelectButton);
+        for (let i=0;i<buttons.length;i++) {
+            if (buttons[i].id != "settings") {
+                buttons[i].addEventListener('click', ()=> {
+                    settingsButton.value = "off";
+                    settingsDiv.remove();
+                });
+            }
+        }
+    } else {
+        settingsButton.value = "off";
+        settingsDiv.remove();
+        body.style.gridTemplateColumns = "60px 1fr";
+    }
+}
+
+function settingsTheme() {
+    const books = document.querySelectorAll('.book');
+    if (settingsSelect.value == "Blue Theme") {
+        header.style.backgroundColor = "rgba(6, 243, 243, 0.4)";
+    } else if (settingsSelect.value == "Green Theme") {
+        header.style.backgroundColor = "rgba(44, 255, 1, 0.4)";
+        for (let i=0;i<books.length;i++) {
+            books[i].style.border = "1px solid rgb(44, 255, 1)";
+        }
+    } else if (settingsSelect.value == "Red Theme") {
+        header.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
+        for (let i=0;i<books.length;i++) {
+            books[i].style.border = "1px solid rgb(255,0,0)";
+        }
+    } else if (settingsSelect.value == "Yellow Theme") {
+        header.style.backgroundColor = "rgba(251, 255, 0, 0.4)";
+        for (let i=0;i<books.length;i++) {
+            books[i].style.border = "1px solid rgb(251,255,0)";
+        }
+    } else {
+        header.style.backgroundColor = "rgba(250,250,250,0.4)";
+        for (let i=0;i<books.length;i++) {
+            books[i].style.border = "1px solid aqua";
+        }
+    }
+}
+
+function settingsThemeSelect() {
+    settingsSelectButton.addEventListener('click', ()=> {
+        settingsButton.value = "off";
+        settingsTheme();
+        settingsDiv.remove();
+        body.style.gridTemplateColumns = "60px 1fr";
+    });
+}
+
+function accountButtonClick() {
+    accountButton.addEventListener('click', ()=> {
+        window.open('https://github.com/williambeach', '_blank');
+    })
+}
+
+
+
 
 
 
@@ -279,3 +361,8 @@ showAllButton();
 sortBooks();
 addSortOptions();
 sortAlgo();
+accountButtonClick();
+settings();
+addSettingsOptions();
+settingsThemeSelect();
+

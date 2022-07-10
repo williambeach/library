@@ -9,7 +9,6 @@ body {
     margin: 0;
     background: url('pictures/bookshelves.jpg');
     background-size: 100%;
-    
 }
 
 header {
@@ -20,7 +19,6 @@ header {
     align-items: center;
     background-color: rgba(250,250,250,0.4);
 }
-
 
 .upperIcons, .lowerIcons {
     display: flex;
@@ -41,6 +39,7 @@ header {
 button:hover {
     cursor: pointer;
 }
+
 #search {
     background-image: url('pictures/search.png');
     background-size: cover;
@@ -79,7 +78,6 @@ button:hover {
 }
 
 main {
-    
     padding-top: 3vh;
     padding-bottom: 3vh;
     padding-right: 5px;
@@ -98,7 +96,6 @@ main::-webkit-scrollbar {
 
 .book {
     border: 1px solid aqua;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
     height: 100%; 
     background-size: 100% 100%;  
 }
@@ -114,7 +111,6 @@ main::-webkit-scrollbar {
 .bookHover {
     transform: scale(1.1);
 }
-
 
 [title="The Principles of Object-Oriented JavaScript"] {
     background-image: url('pictures/thePrinciplesOfObjectOrientedJavaScript.jpg');
@@ -172,7 +168,6 @@ main::-webkit-scrollbar {
     background-image: url('pictures/introductionToAlgorithms.jpg');
 }
 
-
 .searchDiv {
     display: flex;
     width: 95%;
@@ -218,7 +213,6 @@ main::-webkit-scrollbar {
     font-family: 'Courier New', Courier, monospace;
 }
 
-
 .hideBook {
     display: none;
 }
@@ -233,20 +227,19 @@ main::-webkit-scrollbar {
 }
 
 .sortDiv {
-    margin-top: 73px;
+    margin-top: 74px;
     display: flex;
     width: 100%;
     height: 60px;
     justify-content: center;
     align-items: center;
     column-gap: 10px;
-    
 }
-
 
 .sortSelect {
     width: 50%;
     text-align: center;
+    height: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
 }
@@ -258,7 +251,8 @@ main::-webkit-scrollbar {
 .sortSelectButton {
     border-radius: 5px;
     width: 70px;
-    height: 22px;
+    height: 30px;
+    border: none;
     font-family: 'Courier New', Courier, monospace;
     background-color:chartreuse;
     font-weight: bold;
@@ -266,4 +260,69 @@ main::-webkit-scrollbar {
 
 .sortSelectButton::after {
     content: "Sort";
+}
+
+.settingsDiv {
+    margin-top: 148px;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.settingsSelect {
+    width: 50%;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    height: 30px;
+}
+
+.settingsSelect:hover {
+    cursor: pointer;
+}
+
+.settingsSelectButton {
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color:crimson;
+    font-weight: bold;
+    border: none;
+}
+
+.settingsSelectButton::after {
+    content: "Change";
+    color: gold;
+}
+
+.headerBlueTheme {
+    background-color: rgba(6, 243, 243, 0.4);
+}
+
+.headerGreenTheme {
+    background-color: rgba(44, 255, 1, 0.4);
+}
+
+.bookGreenTheme {
+    border: 1px solid rgb(44, 255, 1);
+}
+
+.headerRedTheme {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.bookRedTheme {
+    border: 1px solid rgb(255,0,0);
+}
+
+.headerYellowTheme {
+    background-color: rgba(251, 255, 0, 0.4);
+}
+
+.bookYellowTheme {
+    border: 1px solid rgb(251,255,0);
 }
