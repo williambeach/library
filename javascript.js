@@ -345,7 +345,9 @@ function settingsThemeSelect() {
 function accountButtonClick() {
     accountButton.addEventListener('click', ()=> {
         window.open('https://github.com/williambeach', '_blank');
-    })
+        body.style.gridTemplateColumns = "60px 1fr";
+    });
+    
 }
 
 
