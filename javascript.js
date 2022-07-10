@@ -152,6 +152,7 @@ function showAllButton() {
     showAll.addEventListener('click', ()=> {
        deleteBooks();
        showBooks();
+       hoverEffect();
     });
 } 
 
@@ -217,6 +218,7 @@ function sortObjectByAuthor() {
     }
     deleteBooks();
     showSortedBooks();
+    hoverEffect();
 
 }
 
