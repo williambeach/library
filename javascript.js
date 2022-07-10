@@ -50,11 +50,12 @@ function showSortedBooks() {
     }
 }
 
-function hideBooks() {
+function deleteBooks() {
     const books = document.querySelectorAll('.book');
     for (let i =0; i<books.length;i++) {
-        books[i].classList.add('hideBook');
+        books[i].remove();
     }
+    showAll.remove();
 }
 
 function addSortOptions() {
@@ -149,10 +150,8 @@ function searchAlgo() {
 function showAllButton() {
     const books = document.querySelectorAll('.book');
     showAll.addEventListener('click', ()=> {
-        for (let i=0;i<books.length;i++) {
-            books[i].classList.remove('hideBook');
-        }
-        showAll.remove();
+       deleteBooks();
+       showBooks();
     });
 } 
 
@@ -216,7 +215,7 @@ function sortObjectByAuthor() {
             }
         }
     }
-    hideBooks();
+    deleteBooks();
     showSortedBooks();
 
 }
@@ -230,7 +229,7 @@ function sortAlgo() {
     sortSelectButton.addEventListener('click', ()=> {
         if (sortSelect.value == "Sort By Author") {
             sortButton.value = "off";
-            sortObjectByAuthor(); //create object array that is sorted and then hide current .book and append new ordered books to main div
+            sortObjectByAuthor();
             sortDiv.remove();
             body.style.gridTemplateColumns = "60px 1fr";
         }
