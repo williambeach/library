@@ -37,6 +37,17 @@ const searchButton = document.querySelector('#search');
 const searchBar = document.createElement("input");
 const searchBarButton = document.createElement("button");
 const showAll = document.createElement("button");
+const addBookButton = document.querySelector("#addBook");
+const addBookDiv = document.createElement("div");
+const addBookForm = document.createElement("form");
+const formFieldset = document.createElement("fieldset");
+const titleInput = document.createElement("input");
+const authorInput = document.createElement("input");
+const pagesInput = document.createElement("input");
+const readYes = document.createElement("input");
+const readNo = document.createElement("input");
+const imageUrl = document.createElement("input");
+
 
 function showBooks() {
     for (let i =0;i<myLibrary.length;i++) {
@@ -350,6 +361,29 @@ function accountButtonClick() {
     
 }
 
+function addBook() {
+    if (addBookButton.value == "off") {
+        addBookButton.value = "on";
+        header.after(addBookDiv);
+        body.style.gridTemplateColumns = "60px 1fr 1fr";
+        addBookDiv.classList.add('addBookDiv');
+        addBookDiv.appendChild(addBookForm);
+        
+        for (let i=0;i<buttons.length;i++) {
+            if (buttons[i].id != "addBook") {
+                buttons[i].addEventListener('click', ()=> {
+                    addBookButton.value = "off";
+                    addBookDiv.remove();
+                });
+            }
+        }
+    } else {
+        addBookButton.value = "off";
+        addBookDiv.remove();
+        body.style.gridTemplateColumns = "60px 1fr";
+    }
+}
+
 
 
 
@@ -367,4 +401,4 @@ accountButtonClick();
 settings();
 addSettingsOptions();
 settingsThemeSelect();
-
+addBook();
