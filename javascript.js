@@ -16,7 +16,7 @@ pages: 1312, read: false}];
 
 const sortOptions = ["Sort By Author", "Sort By Title"];
 
-const settingsOptions = ["Blue Theme", "Green Theme", "Red Theme", "Yellow Theme", "Reset"];
+const settingsOptions = ["Reset","Blue Theme", "Green Theme", "Red Theme", "Yellow Theme"];
 
 const buttons = document.querySelectorAll('button');
 const books = document.querySelectorAll('.book');
