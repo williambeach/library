@@ -337,15 +337,16 @@ main::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .form {
-    margin-top: 23px;
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
-    min-width: 250px;
-    max-width: 300px;
     width: 350px;
+    
     background-color: white;
     height: 70%;
     border-radius: 2px;

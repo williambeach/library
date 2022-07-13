@@ -379,7 +379,7 @@ function addBook() {
     if (addBookButton.value == "off") {
         addBookButton.value = "on";
         header.after(addBookDiv);
-        body.style.gridTemplateColumns = "60px 1fr 1fr";
+        body.style.gridTemplateColumns = "60px 1fr minmax(238px, 1fr)";
         addBookDiv.classList.add('addBookDiv');
         addBookDiv.appendChild(addBookForm);
         addBookForm.classList.add('form');
