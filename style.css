@@ -1,3 +1,8 @@
+@font-face {
+    src: url('fonts/Boogaloo-Regular.ttf');
+    font-family: Book;
+}
+
 html {
     height: 100vh;
     margin: 0;
@@ -328,11 +333,55 @@ main::-webkit-scrollbar {
 }
 
 .addBookDiv {
-    margin-top: 148px;
     display: flex;
-    width: 100%;
-    height: 60px;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    column-gap: 10px;
+    width: 100%;
+}
+
+.form {
+    margin-top: 23px;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    max-width: 300px;
+    width: 350px;
+    background-color: white;
+    height: 70%;
+    border-radius: 2px;
+    
+}
+
+.formExitDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.formExitButton {
+    width: 20px;
+    height: 20px;
+    background-image: url('pictures/x-button.png');
+    margin-top: 10px;
+    margin-right: 10px;
+    background-size: cover;
+    border: none;
+    background-color: transparent;
+}
+
+.formTitle {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    color:rgb(43, 107, 226);
+    font-family: Book;
+    font-size: 2rem;
+    font-weight:800;
+}
+
+.readYes {
+    display: inline-block;
+}
+
+.readNo {
+    display: inline-block;
 }

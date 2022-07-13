@@ -40,13 +40,27 @@ const showAll = document.createElement("button");
 const addBookButton = document.querySelector("#addBook");
 const addBookDiv = document.createElement("div");
 const addBookForm = document.createElement("form");
-const formFieldset = document.createElement("fieldset");
+const formExitDiv = document.createElement("div");
+const formExitButton = document.createElement("button");
+const formTitle = document.createElement("div");
+const titleInputDiv = document.createElement("div");
+const titleLabel = document.createElement("label");
 const titleInput = document.createElement("input");
+const authorInputDiv = document.createElement("div");
+const authorLabel = document.createElement("label");
 const authorInput = document.createElement("input");
+const pagesInputDiv = document.createElement("div");
+const pagesLabel = document.createElement("label");
 const pagesInput = document.createElement("input");
+const checkBoxDiv = document.createElement("div");
+const readYesLabel = document.createElement("label");
 const readYes = document.createElement("input");
+const readNoLabel = document.createElement("label");
 const readNo = document.createElement("input");
+const imageUrlDiv = document.createElement("div");
+const imageUrlLabel = document.createElement("label");
 const imageUrl = document.createElement("input");
+const formSubmitButton = document.createElement("button");
 
 
 function showBooks() {
@@ -368,7 +382,28 @@ function addBook() {
         body.style.gridTemplateColumns = "60px 1fr 1fr";
         addBookDiv.classList.add('addBookDiv');
         addBookDiv.appendChild(addBookForm);
-        
+        addBookForm.classList.add('form');
+        addBookForm.appendChild(formExitDiv);
+        formExitDiv.appendChild(formExitButton);
+        formExitDiv.classList.add('formExitDiv');
+        formExitButton.classList.add('formExitButton');
+        addBookForm.appendChild(formTitle);
+        formTitle.classList.add('formTitle');
+        formTitle.textContent = "Add Book"
+        addBookForm.appendChild(titleInput);
+        titleInput.type = "text";
+        addBookForm.appendChild(authorInput);
+        authorInput.type = "text";
+        addBookForm.appendChild(pagesInput);
+        pagesInput.type = "number"
+        addBookForm.appendChild(readYes);
+        readYes.type = "checkbox";
+        readYes.classList.add('readYes');
+        addBookForm.appendChild(readNo);
+        readNo.type = "checkbox";
+        readNo.classList.add('readNo');
+        addBookForm.appendChild(imageUrl);
+        imageUrl.type = "text";
         for (let i=0;i<buttons.length;i++) {
             if (buttons[i].id != "addBook") {
                 buttons[i].addEventListener('click', ()=> {
