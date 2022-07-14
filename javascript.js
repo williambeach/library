@@ -39,6 +39,7 @@ const searchBarButton = document.createElement("button");
 const showAll = document.createElement("button");
 const addBookButton = document.querySelector("#addBook");
 const addBookForm = document.querySelector(".hide");
+const bookFormExit = document.querySelector(".formExitButton");
 
 
 
@@ -377,6 +378,14 @@ function addBook() {
     }
 }
 
+function exitForm() {
+    bookFormExit.addEventListener('click', ()=> {
+        addBookButton.value = "off";
+        addBookForm.classList.add('hide');
+        body.style.gridTemplateColumns = "60px 1fr";
+    })
+}
+
 
 
 
@@ -395,3 +404,4 @@ settings();
 addSettingsOptions();
 settingsThemeSelect();
 addBook();
+exitForm();

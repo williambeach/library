@@ -342,7 +342,7 @@ main::-webkit-scrollbar {
 }
 
 .hide {
-    display:none;
+    display: none;
     
 }
 
@@ -382,10 +382,23 @@ main::-webkit-scrollbar {
     font-weight:800;
 }
 
-.readYes {
-    display: inline-block;
+.input {
+    width:250px;
+    height: 30px;
 }
 
-.readNo {
-    display: inline-block;
+.input:focus::placeholder {
+    color: transparent;
+}
+
+.read {
+    display: flex;
+    column-gap: 15px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
 }
