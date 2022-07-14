@@ -8,6 +8,8 @@ This project has been offered before introduction to backend technologies
 such as node and therefore cannot hold memory and accounts, thus a couple
 of button options are superficial. 
 
+Initially I used JavaScript to create the form for adding a book, but decided to reduce lines of code by creating form with html and using js to hide/show.
+
 Also, book cover pictures use a url in the form for this same reason, we can't store new images on a server with this project. 
 
 Main content background image by Ricardo Esquivel: https://www.pexels.com/photo/books-filed-neatly-on-shelves-1907785/
