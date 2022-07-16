@@ -40,9 +40,7 @@ const showAll = document.createElement("button");
 const addBookButton = document.querySelector("#addBook");
 const addBookForm = document.querySelector(".hide");
 const bookFormExit = document.querySelector(".formExitButton");
-
-
-
+const submitBookButton = document.querySelector("#submit");
 
 function showBooks() {
     for (let i =0;i<myLibrary.length;i++) {
@@ -363,7 +361,7 @@ function addBook() {
         addBookForm.classList.remove('hide');
         addBookForm.classList.add('addBookDiv');
         for (let i=0;i<buttons.length;i++) {
-            if (buttons[i].id != "addBook") {
+            if (buttons[i].id != "addBook" && buttons[i].id != "submit") {
                 buttons[i].addEventListener('click', ()=> {
                     addBookButton.value = "off";
                     addBookForm.classList.remove('addBookDiv');
@@ -383,12 +381,67 @@ function exitForm() {
         addBookButton.value = "off";
         addBookForm.classList.add('hide');
         body.style.gridTemplateColumns = "60px 1fr";
-    })
+    });
 }
 
+function NewBook(newTitle, newAuthor, howManyPages, readOrNot) {
+    this.newTitle = newTitle;
+    this.newAuthor = newAuthor;
+    this.howManyPages = howManyPages;
+    this.readOrNot = readOrNot;
+}
 
+function capitalizeAuthor(arg) {
+    let finalString = "";
+    let newString = "";
+    let tempArray = [];
+    if (arg.includes(",")) {
+        newArray = arg.split(",");
+        for (let i=0;i<newArray.length;i++) {
+            fullName = newArray[i].split(" ");
+            for (let j=0;j<fullName.length;j++) {
+                if (fullName[j] == "") {
+                    fullName.splice(j, 1);
+                }
+                fullName[j] = fullName[j].substring(0,1).toUpperCase() + fullName[j].substring(1).toLowerCase();
+            }
+            newString = fullName.join(" ");
+            tempArray.push(newString)
+            finalString = tempArray.join(", ");
+        }
+    } else {
+        fullName = arg.split(" ");
+        for (let j=0;j<fullName.length;j++) {
+            fullName[j] = fullName[j].substring(0,1).toUpperCase() + fullName[j].substring(1).toLowerCase();
+        }
+        finalString = fullName.join(" ");
+    }
+    return finalString;
+}
 
+function capitalizeTitle(arg) {
+    newArray = arg.split(" ");
+    newString = "";
+    for (let i=0;i<newArray.length;i++) {
+        upperCase = newArray[i].substring(0,1).toUpperCase() + newArray[i].substring(1).toLowerCase() + " ";
+        newString += upperCase;
+    }
+    return newString;
+}
 
+function submitButton() {
+    submitBookButton.addEventListener('click', ()=> {
+        newBookTitle = document.querySelector("#title").value;
+        newBookAuthor = document.querySelector("#author").value;
+        newBookPages = document.querySelector("#pages").value;
+        newBookImage = document.querySelector("#imageURL").value;
+        newBookRead = document.querySelector("#read").value;
+        newBookTitle = capitalizeTitle(newBookTitle);
+        newBookAuthor = capitalizeAuthor(newBookAuthor);
+        
+        
+    });
+}
 
 
 showBooks();
@@ -405,3 +458,4 @@ addSettingsOptions();
 settingsThemeSelect();
 addBook();
 exitForm();
+submitButton();

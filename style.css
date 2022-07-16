@@ -3,6 +3,11 @@
     font-family: Book;
 }
 
+@font-face {
+    src: url('fonts/Lobster.ttf');
+    font-family: Lobster;
+}
+
 html {
     height: 100vh;
     margin: 0;
@@ -350,9 +355,9 @@ main::-webkit-scrollbar {
     margin-top: 24px;
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 360px;
     background-color: white;
-    height: 70%;
+    height: 60%;
     border-radius: 2px;
 }
 
@@ -385,6 +390,18 @@ main::-webkit-scrollbar {
 .input {
     width:250px;
     height: 30px;
+    border-image: linear-gradient(to right, rgb(4, 172, 250) 0%, aqua 100%) 0 0 100% 0;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    text-align: left;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: gray;
+    font-weight: 100;
 }
 
 .input:focus::placeholder {
@@ -400,5 +417,25 @@ main::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 15px;
+    row-gap: 25px;
+}
+
+label, option, select {
+    font-family: Book;
+}
+
+#submit {
+    margin-top: 20px;
+    width: 50%;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    color:ghostwhite;
+    font-family: book;
+    font-size: 1.5rem;
+    background-image: linear-gradient( to right, blue, rgb(119, 0, 255));
+}
+
+span {
+    font-family: Book;
 }
