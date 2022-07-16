@@ -31,18 +31,18 @@
             </div>
             <div class="formTitle">Add Book</div>
             <div class="inputs">
-                <input type="text" class="input" id="title" placeholder="Title of Book">
+                <input type="text" class="input" id="title" placeholder="Title of Book" >
                 <input type="text" class="input" id="author" placeholder="Author of Book:">
                 <input type="number" class="input" id="pages" min="1" max="1500" placeholder="Number of Pages">
                 <input type="text" class="input" id="imageURL" placeholder="Image URL">
                 <div class="read">
                     <label for="read">Read?</label>
-                    <select name="read" id="read">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
+                    <select name="read" id="read" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
                     </select>
                 </div> 
-                <button id="submit">Submit</button>
+                <button id="submit" onclick="submitButton();">Submit</button>
                 <span>*Use comma separated list for more than one author</span>
             </div>
         </form>

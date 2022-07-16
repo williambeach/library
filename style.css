@@ -352,7 +352,7 @@ main::-webkit-scrollbar {
 }
 
 .form {
-    margin-top: 24px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     width: 360px;

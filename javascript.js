@@ -42,11 +42,16 @@ const addBookForm = document.querySelector(".hide");
 const bookFormExit = document.querySelector(".formExitButton");
 const submitBookButton = document.querySelector("#submit");
 
+
 function showBooks() {
     for (let i =0;i<myLibrary.length;i++) {
         newDiv = document.createElement("div");
         newDiv.classList.add('book');
         newDiv.title = myLibrary[i].title;
+        if (myLibrary[i].hasOwnProperty('imageURL')) {
+            imgUrl = myLibrary[i].imageURL;
+            newDiv.style.backgroundImage = 'url("${imgUrl}")';
+        }
         main.appendChild(newDiv);
     }
 }
@@ -355,7 +360,11 @@ function accountButtonClick() {
 }
 
 function addBook() {
+    const inputs = document.querySelectorAll(".inputs");
     if (addBookButton.value == "off") {
+        for (let i=0;i<inputs.length;i++) {
+            inputs[i].setAttribute('novalidate', false);
+        }
         addBookButton.value = "on";
         body.style.gridTemplateColumns = "60px 1fr minmax(238px, 1fr)";
         addBookForm.classList.remove('hide');
@@ -384,11 +393,12 @@ function exitForm() {
     });
 }
 
-function NewBook(newTitle, newAuthor, howManyPages, readOrNot) {
-    this.newTitle = newTitle;
-    this.newAuthor = newAuthor;
-    this.howManyPages = howManyPages;
-    this.readOrNot = readOrNot;
+function NewBook(newTitle, newAuthor, howManyPages, imageURL, readOrNot) {
+    this.title = newTitle;
+    this.author = newAuthor;
+    this.pages = howManyPages;
+    this.imageURL = imageURL;
+    this.read = readOrNot;
 }
 
 function capitalizeAuthor(arg) {
@@ -420,27 +430,40 @@ function capitalizeAuthor(arg) {
 }
 
 function capitalizeTitle(arg) {
+    let newString = "";
     newArray = arg.split(" ");
-    newString = "";
+    tempArray = [];
     for (let i=0;i<newArray.length;i++) {
-        upperCase = newArray[i].substring(0,1).toUpperCase() + newArray[i].substring(1).toLowerCase() + " ";
-        newString += upperCase;
+        upperCase = newArray[i].substring(0,1).toUpperCase() + newArray[i].substring(1).toLowerCase();
+        tempArray.push(upperCase);
+        newString = tempArray.join(" ");
     }
     return newString;
 }
 
 function submitButton() {
-    submitBookButton.addEventListener('click', ()=> {
+        let titleArray = [];
         newBookTitle = document.querySelector("#title").value;
         newBookAuthor = document.querySelector("#author").value;
-        newBookPages = document.querySelector("#pages").value;
+        newBookPages = Number(document.querySelector("#pages").value);
         newBookImage = document.querySelector("#imageURL").value;
-        newBookRead = document.querySelector("#read").value;
+        newBookRead = Boolean(document.querySelector("#read").value);
         newBookTitle = capitalizeTitle(newBookTitle);
         newBookAuthor = capitalizeAuthor(newBookAuthor);
-        
-        
-    });
+        if (newBookTitle != "" && newBookAuthor != "" && newBookPages != "" && newBookImage != "" && newBookRead != "") {
+            let newBook = new NewBook(newBookTitle, newBookAuthor, newBookPages, newBookImage, newBookRead);
+            for (let i=0;i<myLibrary.length;i++) {
+                titleArray.push(myLibrary[i].title)
+            }
+            if (!titleArray.includes(newBook.title)) {
+                myLibrary.push(newBook);
+            }
+            addBookButton.value = "off";
+            addBookForm.classList.add('hide');
+            body.style.gridTemplateColumns = "60px 1fr";
+            showBooks();
+            console.log(myLibrary);
+        }
 }
 
 
@@ -458,4 +481,4 @@ addSettingsOptions();
 settingsThemeSelect();
 addBook();
 exitForm();
-submitButton();
+
