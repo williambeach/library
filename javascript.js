@@ -50,7 +50,7 @@ function showBooks() {
         newDiv.title = myLibrary[i].title;
         if (myLibrary[i].hasOwnProperty('imageURL')) {
             imgUrl = myLibrary[i].imageURL;
-            newDiv.style.backgroundImage = 'url("${imgUrl}")';
+            newDiv.style.cssText += `background-image:url(${imgUrl})`;
         }
         main.appendChild(newDiv);
     }
@@ -61,6 +61,10 @@ function showSortedAuthorBooks() {
         newDiv = document.createElement("div");
         newDiv.classList.add('book');
         newDiv.title = authorSortedObjectArray[i].title;
+        if (authorSortedObjectArray[i].hasOwnProperty('imageURL')) {
+            imgUrl = authorSortedObjectArray[i].imageURL;
+            newDiv.style.cssText += `background-image:url(${imgUrl})`;
+        }
         main.appendChild(newDiv);
     }
 }
@@ -70,6 +74,10 @@ function showSortedTitleBooks() {
         newDiv = document.createElement("div");
         newDiv.classList.add('book');
         newDiv.title = titleSortedObjectArray[i].title;
+        if (titleSortedObjectArray[i].hasOwnProperty('imageURL')) {
+            imgUrl = titleSortedObjectArray[i].imageURL;
+            newDiv.style.cssText += `background-image:url(${imgUrl})`;
+        }
         main.appendChild(newDiv);
     }
 }
@@ -124,6 +132,8 @@ function hoverEffect() {
 function searchBooks() {
     if (searchButton.value == "off") {
         searchButton.value = "on";
+        deleteBooks();
+        showBooks();
         header.after(searchDiv);
         searchDiv.classList.add("searchDiv");
         searchBar.placeholder = "Search By Title or Author";
@@ -154,14 +164,10 @@ function searchBooks() {
 
 function search() {
     const books = document.querySelectorAll('.book');
+    searchBar.value = searchBar.value.toLowerCase();
     for (let i=0; i<myLibrary.length;i++) {
-        searchBar.value = searchBar.value.toLowerCase();
-        if (myLibrary[i].author.toLowerCase().includes(searchBar.value) || myLibrary[i].title.toLowerCase().includes(searchBar.value)) {
-            for (let j=0; j< books.length;j++) {
-                if (myLibrary[i].title != books[j].getAttribute("title")) {
-                    books[j].classList.add('hideBook');
-                }
-            }
+        if (!myLibrary[i].author.toLowerCase().includes(searchBar.value) || myLibrary[i].title.toLowerCase().includes(searchBar.value)) {
+            books[i].classList.add('hideBook');
         }
     }
 }
@@ -190,6 +196,8 @@ function showAllButton() {
 
 function sortBooks() {
     if (sortButton.value == "off") {
+        deleteBooks();
+        showBooks();
         sortButton.value = "on";
         header.after(sortDiv);
         body.style.gridTemplateColumns = "60px 1fr 1fr";
@@ -292,6 +300,8 @@ function sortAlgo() {
 
 function settings() {
     if (settingsButton.value == "off") {
+        deleteBooks();
+        showBooks();
         settingsButton.value = "on";
         header.after(settingsDiv);
         body.style.gridTemplateColumns = "60px 1fr 1fr";
@@ -356,11 +366,12 @@ function accountButtonClick() {
         window.open('https://github.com/williambeach', '_blank');
         body.style.gridTemplateColumns = "60px 1fr";
     });
-    
 }
 
 function addBook() {
     const inputs = document.querySelectorAll(".inputs");
+    deleteBooks();
+    showBooks();
     if (addBookButton.value == "off") {
         for (let i=0;i<inputs.length;i++) {
             inputs[i].setAttribute('novalidate', false);
@@ -461,8 +472,9 @@ function submitButton() {
             addBookButton.value = "off";
             addBookForm.classList.add('hide');
             body.style.gridTemplateColumns = "60px 1fr";
+            deleteBooks();
             showBooks();
-            console.log(myLibrary);
+            titleArray = [];
         }
 }
 
