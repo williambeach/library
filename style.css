@@ -442,6 +442,8 @@ span {
 
 .deleteBookIcon {
     border: none;
+    margin-top: -15px;
+    margin-right: -15px;
     float: right;
     background-image: url('pictures/red-x.png');
     background-size: cover;

@@ -505,12 +505,25 @@ function submitButton() {
 
 function removeIcons() {
     const redIcons = document.querySelectorAll(".deleteBookIcon");
-        for (let i=0;i<redIcons.length;i++) {
-            redIcons[i].remove();
-        }
+    for (let i=0;i<redIcons.length;i++) {
+        redIcons[i].remove();
+    }
 }
 
-function deleteBook() {
+function removeBook() {
+    const redIcons = document.querySelectorAll(".deleteBookIcon");
+    for (let i=0;i<redIcons.length;i++) {
+        redIcons[i].addEventListener('click', ()=> {
+           myLibrary.splice(i, 1);
+           removeIcons();
+           deleteBooks();
+           showBooks();
+           deleteBookButton.value = "off";
+        });
+    }
+}
+
+function addRemoveIcons() {
     const books = document.querySelectorAll('.book');
     body.style.gridTemplateColumns = "60px 1fr";
     if (deleteBookButton.value == "off") {
@@ -529,11 +542,14 @@ function deleteBook() {
                 });
             }
         }
+        removeBook();
     } else {
         removeIcons();
         deleteBookButton.value = "off";
     }
 }
+
+
 
 
 showBooks();
@@ -550,4 +566,4 @@ addSettingsOptions();
 settingsThemeSelect();
 addBook();
 exitForm();
-deleteBook();
+addRemoveIcons();
