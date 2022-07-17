@@ -160,6 +160,7 @@ function searchBooks() {
         settingsTheme();
         searchDiv.remove();
         showAll.remove();
+        hoverEffect();
         body.style.gridTemplateColumns = "60px 1fr";
     }
 }
@@ -213,6 +214,13 @@ function sortBooks() {
                 buttons[i].addEventListener('click', ()=> {
                     sortButton.value = "off";
                     sortDiv.remove();
+                });
+            }
+            if (buttons[i].id == "deleteBook") {
+                buttons[i].addEventListener('click', ()=> {
+                    sortButton.value = "off";
+                    sortDiv.remove();
+                    body.style.gridTemplateColumns = "60px 1fr";
                 });
             }
         }
@@ -319,6 +327,13 @@ function settings() {
                     settingsDiv.remove();
                 });
             }
+            if (buttons[i].id == "deleteBook") {
+                buttons[i].addEventListener('click', ()=> {
+                    settingsButton.value = "off";
+                    settingsDiv.remove();
+                    body.style.gridTemplateColumns = "60px 1fr";
+                });
+            }
         }
     } else {
         settingsButton.value = "off";
@@ -389,6 +404,13 @@ function addBook() {
                     addBookButton.value = "off";
                     addBookForm.classList.remove('addBookDiv');
                     addBookForm.classList.add('hide');
+                });
+            }
+            if (buttons[i].id == "deleteBook") {
+                buttons[i].addEventListener('click', ()=> {
+                    addBookButton.value = "off";
+                    addBookForm.classList.add('hide');
+                    body.style.gridTemplateColumns = "60px 1fr";
                 });
             }
         }
@@ -481,8 +503,16 @@ function submitButton() {
         }
 }
 
+function removeIcons() {
+    const redIcons = document.querySelectorAll(".deleteBookIcon");
+        for (let i=0;i<redIcons.length;i++) {
+            redIcons[i].remove();
+        }
+}
+
 function deleteBook() {
     const books = document.querySelectorAll('.book');
+    body.style.gridTemplateColumns = "60px 1fr";
     if (deleteBookButton.value == "off") {
         deleteBookButton.value = "on";
         for (let i=0;i<books.length;i++) {
@@ -491,11 +521,16 @@ function deleteBook() {
             redIcon.classList.add('deleteBookIcon');
             books[i].appendChild(redIcon);
         }
-    } else {
-        const redIcons = document.querySelectorAll(".deleteBookIcon");
-        for (let i=0;i<redIcons.length;i++) {
-            redIcons[i].remove();
+        for (let i=0;i<buttons.length;i++) {
+            if (buttons[i].classList == "menu") {
+                buttons[i].addEventListener('click', ()=> {
+                    deleteBookButton.value = "off";
+                    removeIcons();
+                });
+            }
         }
+    } else {
+        removeIcons();
         deleteBookButton.value = "off";
     }
 }

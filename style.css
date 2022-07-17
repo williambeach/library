@@ -449,3 +449,7 @@ span {
     width: 25px;
     height: 25px;
 }
+
+.deleteBookIcon:hover {
+    cursor: crosshair;
+}
