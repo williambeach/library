@@ -439,3 +439,13 @@ label, option, select {
 span {
     font-family: Book;
 }
+
+.deleteBookIcon {
+    border: none;
+    float: right;
+    background-image: url('pictures/red-x.png');
+    background-size: cover;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+}

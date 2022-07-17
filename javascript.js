@@ -41,6 +41,8 @@ const addBookButton = document.querySelector("#addBook");
 const addBookForm = document.querySelector(".hide");
 const bookFormExit = document.querySelector(".formExitButton");
 const submitBookButton = document.querySelector("#submit");
+const deleteBookButton = document.querySelector("#deleteBook");
+
 
 
 function showBooks() {
@@ -372,6 +374,7 @@ function addBook() {
     const inputs = document.querySelectorAll(".inputs");
     deleteBooks();
     showBooks();
+    hoverEffect();
     if (addBookButton.value == "off") {
         for (let i=0;i<inputs.length;i++) {
             inputs[i].setAttribute('novalidate', false);
@@ -478,6 +481,25 @@ function submitButton() {
         }
 }
 
+function deleteBook() {
+    const books = document.querySelectorAll('.book');
+    if (deleteBookButton.value == "off") {
+        deleteBookButton.value = "on";
+        for (let i=0;i<books.length;i++) {
+            redIcon = document.createElement("button");
+            redIcon.id = books[i].title;
+            redIcon.classList.add('deleteBookIcon');
+            books[i].appendChild(redIcon);
+        }
+    } else {
+        const redIcons = document.querySelectorAll(".deleteBookIcon");
+        for (let i=0;i<redIcons.length;i++) {
+            redIcons[i].remove();
+        }
+        deleteBookButton.value = "off";
+    }
+}
+
 
 showBooks();
 hoverEffect();
@@ -493,4 +515,4 @@ addSettingsOptions();
 settingsThemeSelect();
 addBook();
 exitForm();
-
+deleteBook();
