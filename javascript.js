@@ -64,6 +64,9 @@ function showBooks() {
 function showSortedAuthorBooks() {
     for (let i=0; i<authorSortedObjectArray.length;i++) {
         newDiv = document.createElement("div");
+        newDiv.setAttribute("type", "button");
+        newDiv.setAttribute("value", "on");
+        newDiv.setAttribute("onclick", "transform(this);");
         newDiv.classList.add('book');
         newDiv.title = authorSortedObjectArray[i].title;
         if (authorSortedObjectArray[i].hasOwnProperty('imageURL')) {
@@ -77,6 +80,9 @@ function showSortedAuthorBooks() {
 function showSortedTitleBooks() {
     for (let i=0; i<titleSortedObjectArray.length;i++) {
         newDiv = document.createElement("div");
+        newDiv.setAttribute("type", "button");
+        newDiv.setAttribute("value", "on");
+        newDiv.setAttribute("onclick", "transform(this);");
         newDiv.classList.add('book');
         newDiv.title = titleSortedObjectArray[i].title;
         if (titleSortedObjectArray[i].hasOwnProperty('imageURL')) {
@@ -175,6 +181,7 @@ function search() {
         if (!myLibrary[i].author.toLowerCase().includes(searchBar.value) || myLibrary[i].title.toLowerCase().includes(searchBar.value)) {
             books[i].classList.add('hideBook');
         }
+        hoverEffect();
     }
 }
 
