@@ -48,6 +48,9 @@ const deleteBookButton = document.querySelector("#deleteBook");
 function showBooks() {
     for (let i =0;i<myLibrary.length;i++) {
         newDiv = document.createElement("div");
+        newDiv.setAttribute("type", "button");
+        newDiv.setAttribute("value", "on");
+        newDiv.setAttribute("onclick", "transform(this);");
         newDiv.classList.add('book');
         newDiv.title = myLibrary[i].title;
         if (myLibrary[i].hasOwnProperty('imageURL')) {
@@ -228,6 +231,7 @@ function sortBooks() {
         sortButton.value = "off";
         sortDiv.remove();
         body.style.gridTemplateColumns = "60px 1fr";
+        hoverEffect();
     }
 }
 
@@ -339,6 +343,7 @@ function settings() {
         settingsButton.value = "off";
         settingsDiv.remove();
         body.style.gridTemplateColumns = "60px 1fr";
+        hoverEffect();
     }
 }
 
@@ -548,6 +553,19 @@ function addRemoveIcons() {
         deleteBookButton.value = "off";
     }
 }
+
+function transform(val) {
+    let bookValue = (val.getAttribute("value"));
+    if (bookValue == "on") {
+        val.setAttribute("value", "off");
+        val.classList.add("rotationOne");
+        
+    } else {
+        val.setAttribute("value", "on");
+        val.classList.add("rotationTwo");
+    }
+}
+
 
 
 

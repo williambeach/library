@@ -455,3 +455,16 @@ span {
 .deleteBookIcon:hover {
     cursor: crosshair;
 }
+
+.rotationOne {
+    transition: 0.7s linear;
+    transform: rotateY(180deg);
+}
+
+.rotationTwo {
+    transition: 0.7s linear;
+    transform: rotateY(-0deg);
+}
+
+
+
