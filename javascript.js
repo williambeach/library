@@ -566,9 +566,9 @@ function transform(val) {
     let bookValue = (val.getAttribute("value"));
     if (bookValue == "on") {
         val.setAttribute("value", "off");
-        val.setAttribute("class", "book bookHover rotationOne");
+        val.setAttribute("class", "book rotationOne");
         val.addEventListener("transitionend", ()=> {
-            val.setAttribute("class", "book bookHover rotationTwo");
+            val.setAttribute("class", "book rotationTwo");
         });
     } else {
         val.setAttribute("value", "on");
@@ -576,15 +576,11 @@ function transform(val) {
         val.addEventListener("transitionend", ()=> {
             val.setAttribute("class", "book rotationFour");
         });
-        val.addEventListener("mouseout", ()=> {
-            val.setAttribute("class", "book");
-        });
+        setTimeout(()=> {
+            val.classList = "book";
+        }, 700);
     }
 }
-
-
-
-
 
 showBooks();
 hoverEffect();

@@ -105,6 +105,7 @@ main::-webkit-scrollbar {
 }
 
 .book {
+    
     border: 1px solid aqua;
     height: 100%; 
     background-size: 100% 100%;  
@@ -476,7 +477,7 @@ span {
 }
 
 .rotationFour {
-    transition: 0.4s;
+    transition: 0.6s;
     transform: rotateY(90deg) rotateY(-90deg);
 }
 
