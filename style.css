@@ -467,6 +467,9 @@ span {
     transform: rotateY(90deg) rotateY(90deg);
     background-image: none;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rotationThree {
@@ -474,6 +477,9 @@ span {
     transform: rotateY(180deg) rotateY(-90deg);
     background-image: none;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rotationFour {
@@ -482,3 +488,10 @@ span {
 }
 
 
+.bookRead {
+    width: 100px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}

@@ -45,6 +45,7 @@ const deleteBookButton = document.querySelector("#deleteBook");
 
 
 
+
 function showBooks() {
     for (let i =0;i<myLibrary.length;i++) {
         newDiv = document.createElement("div");
@@ -563,13 +564,42 @@ function addRemoveIcons() {
     }
 }
 
+function addReadButton(val) {
+    const books = document.querySelectorAll('.book');
+    bookTitle = val.title;
+    for (let i=0;i<myLibrary.length;i++) {
+        if (myLibrary[i].title.includes(bookTitle)) {
+            books[i].appendChild(document.createElement("button"));
+            books[i].firstChild.setAttribute("onclick", "event.stopPropagation();");
+        }
+    }
+}
+
+function removeReadButton(val) {
+    const books = document.querySelectorAll('.book');
+    bookTitle = val.title;
+    for (let i=0;i<myLibrary.length;i++) {
+        if (myLibrary[i].title.includes(bookTitle)) {
+            books[i].removeChild(books[i].firstChild);
+        }
+    }
+}
+
+
+
 function transform(val) {
-    let bookValue = (val.getAttribute("value"));
-    if (bookValue == "on") {
+    let count = 0;
+    if (val.getAttribute("value") == "on") {
         val.setAttribute("value", "off");
         val.setAttribute("class", "book rotationOne");
-        val.addEventListener("transitionend", ()=> {
+        val.addEventListener("transitionend", (e)=> {
             val.setAttribute("class", "book rotationTwo");
+            if (e.propertyName == "transform") {
+                count ++;
+            }
+            if (count == 2) {
+                addReadButton(val);
+            }
         });
     } else {
         val.setAttribute("value", "on");
@@ -577,11 +607,17 @@ function transform(val) {
         val.addEventListener("transitionend", ()=> {
             val.setAttribute("class", "book rotationFour");
         });
+        removeReadButton(val);
         setTimeout(()=> {
             val.classList = "book";
         }, 700);
     }
 }
+
+
+
+
+
 
 showBooks();
 hoverEffect();
