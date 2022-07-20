@@ -387,6 +387,7 @@ function settingsThemeSelect() {
         settingsTheme();
         settingsDiv.remove();
         body.style.gridTemplateColumns = "60px 1fr";
+        hoverEffect();
     });
 }
 
