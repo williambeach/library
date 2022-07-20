@@ -565,16 +565,18 @@ function transform(val) {
     let bookValue = (val.getAttribute("value"));
     if (bookValue == "on") {
         val.setAttribute("value", "off");
-        val.classList.remove("rotationTwo");
-        val.classList.add("rotationOne");
-        
+        val.setAttribute("class", "book bookHover rotationOne");
+        val.addEventListener("transitionend", ()=> {
+            val.setAttribute("class", "book bookHover rotationTwo");
+        });
     } else {
         val.setAttribute("value", "on");
-        val.classList.remove("rotationOne");
-        val.classList.add("rotationTwo");
+        val.setAttribute("class", "book rotationThree");
         val.addEventListener("transitionend", ()=> {
-            val.classList.remove("rotationTwo");
-            val.classList.add("bookHover");
+            val.setAttribute("class", "book rotationFour");
+        });
+        val.addEventListener("mouseout", ()=> {
+            val.setAttribute("class", "book");
         });
     }
 }

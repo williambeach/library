@@ -457,14 +457,27 @@ span {
 }
 
 .rotationOne {
-    transition: 0.7s linear;
-    transform: rotateY(180deg);
+    transition: 0.4s;
+    transform: rotateY(90deg);
 }
 
 .rotationTwo {
-    transition: 0.7s linear;
-    transform: rotateY(-0deg);
+    transition: 0.4s;
+    transform: rotateY(90deg) rotateY(90deg);
+    background-image: none;
+    background-color: white;
 }
 
+.rotationThree {
+    transition: 0.4s;
+    transform: rotateY(180deg) rotateY(-90deg);
+    background-image: none;
+    background-color: white;
+}
+
+.rotationFour {
+    transition: 0.4s;
+    transform: rotateY(90deg) rotateY(-90deg);
+}
 
 
