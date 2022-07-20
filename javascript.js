@@ -530,6 +530,7 @@ function removeBook() {
            removeIcons();
            deleteBooks();
            showBooks();
+           hoverEffect();
            deleteBookButton.value = "off";
         });
     }
