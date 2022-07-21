@@ -88,9 +88,10 @@ button:hover {
 }
 
 main {
+    padding-left: 15px;
     padding-top: 3vh;
     padding-bottom: 3vh;
-    padding-right: 5px;
+    padding-right: 15px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 200px);
     grid-auto-rows: 30%;
