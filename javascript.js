@@ -544,10 +544,12 @@ function addRemoveIcons() {
     if (deleteBookButton.value == "off") {
         deleteBookButton.value = "on";
         for (let i=0;i<books.length;i++) {
-            redIcon = document.createElement("button");
-            redIcon.id = books[i].title;
-            redIcon.classList.add('deleteBookIcon');
-            books[i].appendChild(redIcon);
+            if (books[i].getAttribute("value") == "on") {
+                redIcon = document.createElement("button");
+                redIcon.id = books[i].title;
+                redIcon.classList.add('deleteBookIcon');
+                books[i].appendChild(redIcon);
+            }
         }
         for (let i=0;i<buttons.length;i++) {
             if (buttons[i].classList == "menu") {
@@ -569,18 +571,45 @@ function addReadButton(val) {
     bookTitle = val.title;
     for (let i=0;i<myLibrary.length;i++) {
         if (myLibrary[i].title.includes(bookTitle)) {
+            books[i].appendChild(document.createElement("div"));
             books[i].appendChild(document.createElement("button"));
-            books[i].firstChild.setAttribute("onclick", "event.stopPropagation();");
+            books[i].children[0].textContent = `${myLibrary[i].title}`;
+            books[i].children[0].setAttribute("class", "div");
+            indexOf = i;
+            books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleRead(books[i]);");
+            toggleRead(books[i]);
+            books[i].children[1].setAttribute("class", "bookRead");
+            books[i].children[1].setAttribute("value", "on");
         }
     }
 }
 
-function removeReadButton(val) {
+function toggleRead(book, indexOf) {
+    if (book.children[1].value == "on") {
+        book.children[1].value = "off";
+        if (myLibrary[indexOf].read == true) {
+            book.children[1].textContent = "Read";
+        } else {
+            book.children[1].textContent = "Unread";
+        }
+    } else {
+        book.children[1].value = "on";
+        if (myLibrary[indexOf].read == true) {
+            book.children[1].textContent = "Read";
+        } else {
+            book.children[1].textContent = "Unread";
+        }
+    }     
+}
+
+
+function removeBookInfo(val) {
     const books = document.querySelectorAll('.book');
     bookTitle = val.title;
     for (let i=0;i<myLibrary.length;i++) {
         if (myLibrary[i].title.includes(bookTitle)) {
-            books[i].removeChild(books[i].firstChild);
+            books[i].children[0].remove();
+            books[i].children[0].remove();
         }
     }
 }
@@ -607,7 +636,7 @@ function transform(val) {
         val.addEventListener("transitionend", ()=> {
             val.setAttribute("class", "book rotationFour");
         });
-        removeReadButton(val);
+        removeBookInfo(val);
         setTimeout(()=> {
             val.classList = "book";
         }, 700);
