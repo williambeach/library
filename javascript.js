@@ -42,6 +42,8 @@ const addBookForm = document.querySelector(".hide");
 const bookFormExit = document.querySelector(".formExitButton");
 const submitBookButton = document.querySelector("#submit");
 const deleteBookButton = document.querySelector("#deleteBook");
+let authorSortedArray = [];
+let authorSortedObjectArray = [];
 
 
 
@@ -74,6 +76,7 @@ function showSortedAuthorBooks() {
             imgUrl = authorSortedObjectArray[i].imageURL;
             newDiv.style.cssText += `background-image:url(${imgUrl})`;
         }
+        authorSortedArray.push(newDiv);
         main.appendChild(newDiv);
     }
 }
@@ -244,7 +247,6 @@ function sortBooks() {
 }
 
 function sortObjectByAuthor() {
-    authorSortedObjectArray = [];
     authorArray = [];
     tempSplit = [];
     compareArray = [];
@@ -567,7 +569,7 @@ function addRemoveIcons() {
 }
 
 function addReadButton(val) {
-    const books = document.querySelectorAll('.book');
+    let books = document.querySelectorAll('.book');
     bookTitle = val.title;
     for (let i=0;i<myLibrary.length;i++) {
         if (myLibrary[i].title.includes(bookTitle)) {
