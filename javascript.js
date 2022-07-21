@@ -575,32 +575,36 @@ function addReadButton(val) {
             books[i].appendChild(document.createElement("button"));
             books[i].children[0].textContent = `${myLibrary[i].title}`;
             books[i].children[0].setAttribute("class", "div");
-            indexOf = i;
-            books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleRead(books[i]);");
-            toggleRead(books[i]);
+            if (myLibrary[i].read == true) {
+                books[i].children[1].textContent = "Read";
+                books[i].children[1].value = "on";
+            } else {
+                books[i].children[1].textContent = "Unread";
+                books[i].children[1].value = "off";
+            }
+            books[i].children[1].addEventListener("click", ()=> {
+                buttonIndex = i;
+            });
+            books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleRead(buttonIndex);");
             books[i].children[1].setAttribute("class", "bookRead");
-            books[i].children[1].setAttribute("value", "on");
         }
     }
 }
 
-function toggleRead(book, indexOf) {
-    if (book.children[1].value == "on") {
-        book.children[1].value = "off";
-        if (myLibrary[indexOf].read == true) {
-            book.children[1].textContent = "Read";
-        } else {
-            book.children[1].textContent = "Unread";
-        }
+function toggleRead(buttonIndex) {
+    const books = document.querySelectorAll('.book');
+    if (books[buttonIndex].children[1].value == "on") {
+        books[buttonIndex].children[1].value = "off";
+        books[buttonIndex].children[1].textContent = "Unread";
+        myLibrary[buttonIndex].read = false;
+        
     } else {
-        book.children[1].value = "on";
-        if (myLibrary[indexOf].read == true) {
-            book.children[1].textContent = "Read";
-        } else {
-            book.children[1].textContent = "Unread";
-        }
-    }     
-}
+        books[buttonIndex].children[1].value = "on";
+        books[buttonIndex].children[1].textContent = "Read";
+        myLibrary[buttonIndex].read = true;
+    }
+}     
+
 
 
 function removeBookInfo(val) {
