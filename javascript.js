@@ -44,6 +44,7 @@ const submitBookButton = document.querySelector("#submit");
 const deleteBookButton = document.querySelector("#deleteBook");
 let authorSortedArray = [];
 let authorSortedObjectArray = [];
+let titleSortedObjectArray = [];
 
 
 
@@ -61,6 +62,8 @@ function showBooks() {
             newDiv.style.cssText += `background-image:url(${imgUrl})`;
         }
         main.appendChild(newDiv);
+        authorSortedObjectArray = [];
+        titleSortedObjectArray = []
     }
 }
 
@@ -287,7 +290,6 @@ function sortObjectByAuthor() {
 
 function sortObjectByTitle() {
     arrayOfSortedTitles = [];
-    titleSortedObjectArray = [];
     for (let i = 0;i<myLibrary.length;i++) {
         arrayOfSortedTitles.push(myLibrary[i].title)
     }
@@ -312,12 +314,14 @@ function sortAlgo() {
             sortObjectByAuthor();
             sortDiv.remove();
             body.style.gridTemplateColumns = "60px 1fr";
+            titleSortedObjectArray = [];
         }
         else {
             sortButton.value = "off";
             sortObjectByTitle();
             sortDiv.remove();
             body.style.gridTemplateColumns = "60px 1fr"; 
+            authorSortedObjectArray = [];
         }
     });
 }
@@ -571,24 +575,70 @@ function addRemoveIcons() {
 function addReadButton(val) {
     let books = document.querySelectorAll('.book');
     bookTitle = val.title;
-    for (let i=0;i<myLibrary.length;i++) {
-        if (myLibrary[i].title.includes(bookTitle)) {
-            books[i].appendChild(document.createElement("div"));
-            books[i].appendChild(document.createElement("button"));
-            books[i].children[0].textContent = `${myLibrary[i].title}`;
-            books[i].children[0].setAttribute("class", "div");
-            if (myLibrary[i].read == true) {
-                books[i].children[1].textContent = "Read";
-                books[i].children[1].value = "on";
-            } else {
-                books[i].children[1].textContent = "Unread";
-                books[i].children[1].value = "off";
+    if (authorSortedObjectArray.length == 0 && titleSortedObjectArray.length == 0) {
+        for (let i=0;i<myLibrary.length;i++) {
+            if (myLibrary[i].title.includes(bookTitle)) {
+                books[i].appendChild(document.createElement("div"));
+                books[i].appendChild(document.createElement("button"));
+                books[i].children[0].textContent = `${myLibrary[i].title}`;
+                books[i].children[0].setAttribute("class", "div");
+                if (myLibrary[i].read == true) {
+                    books[i].children[1].textContent = "Read";
+                    books[i].children[1].value = "on";
+                } else {
+                    books[i].children[1].textContent = "Unread";
+                    books[i].children[1].value = "off";
+                }
+                books[i].children[1].addEventListener("click", ()=> {
+                    buttonIndex = i;
+                });
+                books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleRead(buttonIndex);");
+                books[i].children[1].setAttribute("class", "bookRead");
             }
-            books[i].children[1].addEventListener("click", ()=> {
-                buttonIndex = i;
-            });
-            books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleRead(buttonIndex);");
-            books[i].children[1].setAttribute("class", "bookRead");
+        }
+    }
+    if (authorSortedObjectArray.length > 0 && titleSortedObjectArray.length == 0) {
+        for (let i=0;i<authorSortedObjectArray.length;i++) {
+            if (authorSortedObjectArray[i].title.includes(bookTitle)) {
+                books[i].appendChild(document.createElement("div"));
+                books[i].appendChild(document.createElement("button"));
+                books[i].children[0].textContent = `${authorSortedObjectArray[i].title}`;
+                books[i].children[0].setAttribute("class", "div");
+                if (authorSortedObjectArray[i].read == true) {
+                    books[i].children[1].textContent = "Read";
+                    books[i].children[1].value = "on";
+                } else {
+                    books[i].children[1].textContent = "Unread";
+                    books[i].children[1].value = "off";
+                }
+                books[i].children[1].addEventListener("click", ()=> {
+                    buttonIndex = i;
+                });
+                books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleReadAuthor(buttonIndex);");
+                books[i].children[1].setAttribute("class", "bookRead");
+            }
+        }
+    }
+    if (authorSortedObjectArray.length == 0 && titleSortedObjectArray.length > 0) {
+        for (let i=0;i<titleSortedObjectArray.length;i++) {
+            if (titleSortedObjectArray[i].title.includes(bookTitle)) {
+                books[i].appendChild(document.createElement("div"));
+                books[i].appendChild(document.createElement("button"));
+                books[i].children[0].textContent = `${titleSortedObjectArray[i].title}`;
+                books[i].children[0].setAttribute("class", "div");
+                if (titleSortedObjectArray[i].read == true) {
+                    books[i].children[1].textContent = "Read";
+                    books[i].children[1].value = "on";
+                } else {
+                    books[i].children[1].textContent = "Unread";
+                    books[i].children[1].value = "off";
+                }
+                books[i].children[1].addEventListener("click", ()=> {
+                    buttonIndex = i;
+                });
+                books[i].children[1].setAttribute("onclick", "event.stopPropagation(); toggleReadTitle(buttonIndex);");
+                books[i].children[1].setAttribute("class", "bookRead");
+            }
         }
     }
 }
@@ -607,20 +657,33 @@ function toggleRead(buttonIndex) {
     }
 }     
 
-
-
-function removeBookInfo(val) {
+function toggleReadAuthor(buttonIndex) {
     const books = document.querySelectorAll('.book');
-    bookTitle = val.title;
-    for (let i=0;i<myLibrary.length;i++) {
-        if (myLibrary[i].title.includes(bookTitle)) {
-            books[i].children[0].remove();
-            books[i].children[0].remove();
-        }
+    if (books[buttonIndex].children[1].value == "on") {
+        books[buttonIndex].children[1].value = "off";
+        books[buttonIndex].children[1].textContent = "Unread";
+        authorSortedObjectArray[buttonIndex].read = false;
+        
+    } else {
+        books[buttonIndex].children[1].value = "on";
+        books[buttonIndex].children[1].textContent = "Read";
+        authorSortedObjectArray[buttonIndex].read = true;
     }
-}
+} 
 
-
+function toggleReadTitle(buttonIndex) {
+    const books = document.querySelectorAll('.book');
+    if (books[buttonIndex].children[1].value == "on") {
+        books[buttonIndex].children[1].value = "off";
+        books[buttonIndex].children[1].textContent = "Unread";
+        titleSortedObjectArray[buttonIndex].read = false;
+        
+    } else {
+        books[buttonIndex].children[1].value = "on";
+        books[buttonIndex].children[1].textContent = "Read";
+        titleSortedObjectArray[buttonIndex].read = true;
+    }
+} 
 
 function transform(val) {
     let count = 0;
@@ -642,7 +705,8 @@ function transform(val) {
         val.addEventListener("transitionend", ()=> {
             val.setAttribute("class", "book rotationFour");
         });
-        removeBookInfo(val);
+        val.children[0].remove();
+        val.children[0].remove();
         setTimeout(()=> {
             val.classList = "book";
         }, 700);
