@@ -687,29 +687,31 @@ function toggleReadTitle(buttonIndex) {
 
 function transform(val) {
     let count = 0;
-    if (val.getAttribute("value") == "on") {
-        val.setAttribute("value", "off");
-        val.setAttribute("class", "book rotationOne");
-        val.addEventListener("transitionend", (e)=> {
-            val.setAttribute("class", "book rotationTwo");
-            if (e.propertyName == "transform") {
-                count ++;
-            }
-            if (count == 2) {
-                addReadButton(val);
-            }
-        });
-    } else {
-        val.setAttribute("value", "on");
-        val.setAttribute("class", "book rotationThree");
-        val.addEventListener("transitionend", ()=> {
-            val.setAttribute("class", "book rotationFour");
-        });
-        val.children[0].remove();
-        val.children[0].remove();
-        setTimeout(()=> {
-            val.classList = "book";
-        }, 700);
+    if (deleteBookButton.value == "off") {
+        if (val.getAttribute("value") == "on") {
+            val.setAttribute("value", "off");
+            val.setAttribute("class", "book rotationOne");
+            val.addEventListener("transitionend", (e)=> {
+                val.setAttribute("class", "book rotationTwo");
+                if (e.propertyName == "transform") {
+                    count ++;
+                }
+                if (count == 2) {
+                    addReadButton(val);
+                }
+            });
+        } else {
+            val.setAttribute("value", "on");
+            val.setAttribute("class", "book rotationThree");
+            val.addEventListener("transitionend", ()=> {
+                val.setAttribute("class", "book rotationFour");
+            });
+            val.children[0].remove();
+            val.children[0].remove();
+            setTimeout(()=> {
+                val.classList = "book";
+            }, 700);
+        }
     }
 }
 
